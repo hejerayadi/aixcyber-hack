@@ -1,0 +1,4 @@
+This folder previously contained a wallet page which conflicted with the root /wallet route.
+The file `page.tsx` has been disabled/moved to avoid the Next.js "parallel pages" conflict.
+
+If you need an admin-scoped wallet route, move the page into a route group with a unique path.
