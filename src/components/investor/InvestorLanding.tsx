@@ -18,64 +18,87 @@ const mockStats = () => ({
 const mockBourseRecommendations = () => [
   {
     id: 'BT-01',
-    name: 'Société A',
-    ticker: 'SCT-A',
+    name: 'Google',
+    ticker: 'GOOGL',
     action: 'Buy',
-    reason: 'Uptrend, strong earnings',
+    reason: 'AI prediction shows strong momentum',
     score: 0.86,
-    price: 150.5,
+    price: 485.50,
     changePercent: 2.4,
     quantity: 100,
-    marketCap: '120M TND',
+    marketCap: '1.8T USD',
   },
   {
     id: 'BT-02',
-    name: 'Société B',
-    ticker: 'SCT-B',
+    name: 'IBM',
+    ticker: 'IBM',
     action: 'Hold',
-    reason: 'Fair valuation',
+    reason: 'Mixed signals from AI analysis',
     score: 0.56,
-    price: 160.2,
+    price: 185.20,
     changePercent: -0.6,
     quantity: 50,
-    marketCap: '85M TND',
+    marketCap: '165B USD',
   },
   {
     id: 'BT-03',
-    name: 'Société C',
-    ticker: 'SCT-C',
+    name: 'Microsoft',
+    ticker: 'MSFT',
     action: 'Sell',
-    reason: 'Weak cashflow',
+    reason: 'AI indicates volatility concerns',
     score: 0.2,
-    price: 48.75,
+    price: 425.75,
     changePercent: -4.2,
     quantity: 200,
-    marketCap: '30M TND',
+    marketCap: '3.2T USD',
+  },
+  {
+    id: 'BT-04',
+    name: 'Apple',
+    ticker: 'AAPL',
+    action: 'Buy',
+    reason: 'AI shows resilient performance',
+    score: 0.75,
+    price: 195.40,
+    changePercent: 1.8,
+    quantity: 150,
+    marketCap: '3.0T USD',
   },
 ];
 
 const mockStartupRequests = () => [
   {
-    id: 'SU-101',
-    name: 'FinTech Tunisia',
-    amount: 200000,
-    stage: 'Seed',
-    score: 0.78,
-    equityOffered: '8%',
-    valuation: '2.5M TND',
-    founder: 'A. Ben Ali',
-    summary: 'Payments infrastructure for SMEs in Tunisia.',
+    id: 'AI-1',
+    name: 'Cole Group',
+    amount: 3200000,
+    stage: 'Series A',
+    score: 1.092,
+    equityOffered: '12%',
+    valuation: '26.7M USD',
+    founder: 'Cole Management',
+    summary: 'AI-recommended Fintech startup with 109% compatibility score. High growth potential in financial technology sector.',
   },
   {
-    id: 'SU-102',
-    name: 'AgriTech SA',
-    amount: 120000,
-    stage: 'Pre-Seed',
-    score: 0.65,
-    equityOffered: '5%',
-    valuation: '900k TND',
-    founder: 'S. Mhiri',
-    summary: 'Sensor + analytics platform to optimize irrigation.',
+    id: 'AI-2',
+    name: 'Hughes-Miller',
+    amount: 2800000,
+    stage: 'Series A',
+    score: 0.994,
+    equityOffered: '10%',
+    valuation: '28M USD',
+    founder: 'Hughes-Miller Team',
+    summary: 'AI-recommended Fintech startup with 99% compatibility score. Strong alignment with portfolio focus.',
+  },
+  {
+    id: 'AI-3',
+    name: 'Willis Boone and Larson',
+    amount: 1900000,
+    stage: 'Seed',
+    score: 0.873,
+    equityOffered: '8%',
+    valuation: '23.8M USD',
+    founder: 'Willis Boone & Larson',
+    summary: 'AI-recommended Fintech startup with 87% compatibility score. Well-suited for balanced risk tolerance.',
   },
 ];
 
@@ -100,8 +123,8 @@ export default function InvestorLanding() {
   ];
 
   return (
-    <div className="grid grid-cols-12 gap-4 md:gap-6">
-      <div className="col-span-12 xl:col-span-7 space-y-6">
+    <div className="grid grid-cols-12 gap-4 md:gap-6 max-w-full overflow-hidden">
+      <div className="col-span-12 xl:col-span-7 space-y-6 min-w-0">
         <div className="grid grid-cols-3 gap-4">
           <div className="p-4 bg-white dark:bg-gray-800 rounded shadow">
             <div className="text-sm text-gray-500">Portfolio Value</div>
@@ -128,8 +151,8 @@ export default function InvestorLanding() {
         </div>
 
         <div className="p-4 bg-white dark:bg-gray-800 rounded shadow">
-          <h3 className="font-semibold mb-2">Recommended Bourse Actions</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <h3 className="font-semibold mb-2">AI-Powered Bourse Actions</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4">
             {bourse.map((r) => (
               <div key={r.id} className="p-4 border rounded bg-white dark:bg-gray-900">
                 <div className="flex items-center justify-between">
@@ -142,10 +165,10 @@ export default function InvestorLanding() {
 
                 <div className="mt-3">
                   <div className="text-sm text-gray-500">Price</div>
-                  <div className="font-semibold">{r.price.toLocaleString()} TND <span className={`ml-2 text-sm ${r.changePercent >= 0 ? 'text-green-600' : 'text-red-600'}`}>({r.changePercent >= 0 ? '+' : ''}{r.changePercent}%)</span></div>
-                  <div className="text-xs text-gray-500 mt-1">Holding: {r.quantity} · Current: {(r.price * r.quantity).toLocaleString()} TND</div>
+                  <div className="font-semibold">${r.price.toLocaleString()} <span className={`ml-2 text-sm ${r.changePercent >= 0 ? 'text-green-600' : 'text-red-600'}`}>({r.changePercent >= 0 ? '+' : ''}{r.changePercent}%)</span></div>
+                  <div className="text-xs text-gray-500 mt-1">Holding: {r.quantity} · Value: ${(r.price * r.quantity).toLocaleString()}</div>
                   <div className="text-sm text-gray-500 mt-2">{r.reason}</div>
-                  <div className="text-sm text-gray-500 mt-2">score: {Math.round(r.score * 100)}%</div>
+                  <div className="text-sm text-gray-500 mt-2">AI Score: {Math.round(r.score * 100)}%</div>
                 </div>
 
                 <div className="mt-4 flex gap-2">
@@ -158,31 +181,42 @@ export default function InvestorLanding() {
         </div>
       </div>
 
-      <div className="col-span-12 xl:col-span-5 space-y-6">
+      <div className="col-span-12 xl:col-span-5 space-y-6 min-w-0">
         <div className="p-4 bg-white dark:bg-gray-800 rounded shadow">
-          <h3 className="font-semibold mb-2">Startup Funding Requests</h3>
+          <h3 className="font-semibold mb-2">AI-Recommended Startups</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {startups.map((s) => (
-              <div key={s.id} className="p-4 border rounded bg-white dark:bg-gray-900">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <div className="font-medium text-gray-900 dark:text-white">{s.name}</div>
-                    <div className="text-sm text-gray-500">Founder: {s.founder}</div>
-                    <div className="text-sm text-gray-500">Stage: {s.stage} · Valuation: {s.valuation}</div>
-                    <div className="text-sm text-gray-600 mt-2">{s.summary}</div>
+              <div key={s.id} className="p-4 border rounded bg-white dark:bg-gray-900 min-w-0">
+                <div className="flex flex-col space-y-3">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 min-w-0 pr-2">
+                      <div className="font-medium text-gray-900 dark:text-white truncate">{s.name}</div>
+                      <div className="text-sm text-gray-500 truncate">Founder: {s.founder}</div>
+                      <div className="text-sm text-gray-500 truncate">Stage: {s.stage} · {s.valuation}</div>
+                    </div>
+                    <div className="text-right flex-shrink-0">
+                      <div className="text-sm text-gray-500">Investment</div>
+                      <div className="font-semibold text-lg">${s.amount.toLocaleString()}</div>
+                      <div className="text-sm text-gray-500">Equity: {s.equityOffered}</div>
+                      <div className="text-sm text-blue-600 font-medium">AI: {Math.round(s.score * 100)}%</div>
+                    </div>
                   </div>
-                  <div className="ml-4 text-right w-40">
-                    <div className="text-sm text-gray-500">Requested</div>
-                    <div className="font-semibold">{s.amount.toLocaleString()} TND</div>
-                    <div className="text-sm text-gray-500 mt-1">Equity: {s.equityOffered}</div>
-                    <div className="text-sm text-gray-500 mt-1">score: {Math.round(s.score * 100)}%</div>
+                  
+                  <div className="text-sm text-gray-600 overflow-hidden" style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    lineHeight: '1.4',
+                    maxHeight: '2.8em'
+                  }}>
+                    {s.summary}
                   </div>
-                </div>
 
-                <div className="mt-4 flex gap-2">
-                  <button className="flex-1 px-3 py-1 text-sm bg-indigo-600 text-white rounded">View</button>
-                  <button className="px-3 py-1 text-sm bg-green-600 text-white rounded">Invest</button>
-                  <button className="px-3 py-1 text-sm border rounded">Decline</button>
+                  <div className="flex gap-2">
+                    <button className="flex-1 px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700">View</button>
+                    <button className="px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700">Invest</button>
+                    <button className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50">Decline</button>
+                  </div>
                 </div>
               </div>
             ))}
